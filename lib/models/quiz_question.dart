@@ -1,4 +1,3 @@
-//import 'package:flutter';
 
 class QuizQuestion {
   const QuizQuestion({required this.text, required this.answers});
