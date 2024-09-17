@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../data/questions.dart';
 import './answer_button.dart';
 //import '../models/quiz_question.dart';
@@ -8,7 +9,7 @@ class QuestionsScreen extends StatefulWidget {
     super.key,
     required this.answerText,
     required this.onTap,
-    });
+  });
 
   final String answerText;
   final VoidCallback onTap;
@@ -20,16 +21,15 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-var currentQuestionIndex = 0;
+  var currentQuestionIndex = 0;
 
-void answerQuestion() {
-  //currentQuestionIndex = currentQuestionIndex + 1;
-  //currentQuestionIndex +=1;
-  setState(() {
-  currentQuestionIndex++;
-  });
-
-}
+  void answerQuestion() {
+    //currentQuestionIndex = currentQuestionIndex + 1;
+    //currentQuestionIndex +=1;
+    setState(() {
+      currentQuestionIndex++;
+    });
+  }
 
   @override
   Widget build(context) {
@@ -37,28 +37,28 @@ void answerQuestion() {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        margin:const EdgeInsets.all(40),
+        margin: const EdgeInsets.all(40),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, 
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-          Text(
-            currentQuestion.question,
-            style: const TextStyle(
-              color: Colors.white,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 30),
-
-          ...currentQuestion.getShuffledAnswers().map((answer) {
-            return AnswerButton(
-              answerText: answer,  
-              onTap: answerQuestion,
-              );
-          })
-        
-        ]),
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                currentQuestion.question,
+                style: GoogleFonts.lato(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 30),
+              ...currentQuestion.getShuffledAnswers().map((answer) {
+                return AnswerButton(
+                  answerText: answer,
+                  onTap: answerQuestion,
+                );
+              })
+            ]),
       ),
     );
   }
