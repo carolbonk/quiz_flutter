@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import '../data/questions.dart';
 import './answer_button.dart';
-import './models/quiz_question.dart';
+//import '../models/quiz_question.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({
@@ -19,11 +20,20 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  List<QuizQuestion> question = [];
+var currentQuestionIndex = 0;
+
+void answerQuestion() {
+  //currentQuestionIndex = currentQuestionIndex + 1;
+  //currentQuestionIndex +=1;
+  setState(() {
+  currentQuestionIndex++;
+  });
+
+}
 
   @override
   Widget build(context) {
-    final currentQuestion = question[0];
+    final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -33,34 +43,21 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
           Text(
-            currentQuestion.text,
+            currentQuestion.question,
             style: const TextStyle(
               color: Colors.white,
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 30),
-          ...currentQuestion.answers.map((answer) {
+
+          ...currentQuestion.getShuffledAnswers().map((answer) {
             return AnswerButton(
-              answerText: answer, void const onTap(){});
+              answerText: answer,  
+              onTap: answerQuestion,
+              );
           })
         
-          // AnswerButton(
-          //   onTap: () {},
-          //   answerText: currentQuestions.answers[0], 
-          //   ),
-          // AnswerButton(
-          //   onTap: () {},
-          //   answerText: currentQuestions.answers[1], 
-          //   ),
-          // AnswerButton(
-          //   onTap: () {},
-          //   answerText: currentQuestions.answers[2],
-          //   ),
-          // AnswerButton(
-          //   onTap: () {},
-          //   answerText: currentQuestions.answers[3],
-          //   ),
         ]),
       ),
     );

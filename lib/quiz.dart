@@ -17,7 +17,7 @@ class _QuizState extends State<Quiz> {
 
   void switchScreen() {
     setState(() {
-     activeScreen = 'questions- screen';
+     activeScreen = 'questions-screen';
     });
   }    
   
@@ -26,7 +26,10 @@ class _QuizState extends State<Quiz> {
     Widget screenWidget = StartScreen(switchScreen);
 
     if(activeScreen == 'questions-screen') {
-      screenWidget = const QuestionsScreen();
+      screenWidget =  QuestionsScreen(
+        answerText: 'The answer is 42',
+        onTap: () {},
+      );
     }
 
     // Another way to build this logic is by using a Ternary expression:
@@ -36,6 +39,9 @@ class _QuizState extends State<Quiz> {
 
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+        title: const Text('Quiz'),
+        ),
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
