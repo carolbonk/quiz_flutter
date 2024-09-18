@@ -14,9 +14,10 @@ class SummaryItem extends StatelessWidget {
 
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       QuestionIdentifier(
-          isCorrectAnswer: isCorrectAnswer,
-          questionIndex: itemData['question_index'] as int),
-      const SizedBox(),
+        isCorrectAnswer: isCorrectAnswer,
+        questionIndex: itemData['question_index'] as int,
+      ),
+      const SizedBox(width: 10),
       Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
